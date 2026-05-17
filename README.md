@@ -5,6 +5,10 @@
 <p align="center"><strong>Git-style branching for AI conversations. Fork any thought. Merge what matters.</strong></p>
 
 <p align="center">
+  <a href="#getting-started">Getting Started</a> &middot; <a href="#screenshots">Screenshots</a> &middot; <a href="#architecture">Architecture</a> &middot; <a href="#technical-highlights">Technical Highlights</a> &middot; <a href="#tech-stack">Tech Stack</a> &middot; <a href="#database-schema">Database</a> &middot; <a href="#project-structure">Structure</a> &middot; <a href="#what-i-learned">Learnings</a> &middot; <a href="#future-roadmap">Roadmap</a>
+</p>
+
+<p align="center">
   <img src="https://img.shields.io/badge/Next.js-16-black?logo=next.js&logoColor=white" alt="Next.js" />
   <img src="https://img.shields.io/badge/TypeScript-5.0-blue?logo=typescript&logoColor=white" alt="TypeScript" />
   <img src="https://img.shields.io/badge/PostgreSQL-Neon-336791?logo=postgresql&logoColor=white" alt="PostgreSQL" />
