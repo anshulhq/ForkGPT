@@ -21,7 +21,7 @@
 
 <!-- VIDEO DEMO -->
 
-https://github.com/user-attachments/assets/forkgpt_compressed.mp4
+https://github.com/user-attachments/assets/demo/forkgpt_compressed.mp4
 
 > **Watch the full walkthrough above** — forking, merging, sibling navigation, and the branch tree in action.
 
