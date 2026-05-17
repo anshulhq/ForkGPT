@@ -1,6 +1,5 @@
 <p align="center">
-  <a href="https://branchgpt.vercel.app" target="_blank">
-    <img src="public/logo.png" alt="BranchGPT Logo" width="80" height="80" />
+    <img src="public/logo.png" alt="ForkGPT Logo" width="120" height="120" />
   </a>
 </p>
 
