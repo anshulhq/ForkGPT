@@ -1,10 +1,7 @@
 <p align="center">
-    <img src="public/logo.png" alt="ForkGPT Logo" width="120" height="120" />
-  </a>
+    <img src="public/logo.png" alt="ForkGPT Logo" width="140" height="140" />
 </p>
-
 <h1 align="center">ForkGPT</h1>
-
 <p align="center"><strong>Git-style branching for AI conversations. Fork any thought. Merge what matters.</strong></p>
 
 <p align="center">
