@@ -21,7 +21,7 @@
 
 <!-- VIDEO DEMO -->
 
-https://github.com/user-attachments/assets/94fc6d67-0a2b-4eb6-b265-57107ae572bc
+https://github.com/user-attachments/assets/9324f196-1554-454d-84fe-038a4564bb3f
 
 > **Watch the full walkthrough above** forking, merging, sibling navigation, and the branch tree in action.
 
@@ -42,12 +42,12 @@ Neither option respects how people actually think. Ideas branch. Explorations fo
 
 **BranchGPT** models every conversation as a **Directed Acyclic Graph (DAG)** stored in PostgreSQL using a recursive adjacency list. Users can:
 
-|    Action    | What it does                                                                                                                    |
-| :----------: | :------------------------------------------------------------------------------------------------------------------------------ |
-|   **Fork**   | Create a parallel timeline from any message. The new branch inherits all shared history up to the fork point.                   |
-| **Navigate** | Visually jump between branches in a real-time tree sidebar with animated SVG connectors.                                        |
-|  **Merge**   | Collapse a branch back into its parent. An LLM generates a summary of only the _unique_ content (shared history is filtered).  |
-|  **Stream**  | Receive token-by-token AI responses via a custom `ReadableStream` pipeline with `flushSync` rendering.                          |
+|    Action    | What it does                                                                                                                  |
+| :----------: | :---------------------------------------------------------------------------------------------------------------------------- |
+|   **Fork**   | Create a parallel timeline from any message. The new branch inherits all shared history up to the fork point.                 |
+| **Navigate** | Visually jump between branches in a real-time tree sidebar with animated SVG connectors.                                      |
+|  **Merge**   | Collapse a branch back into its parent. An LLM generates a summary of only the _unique_ content (shared history is filtered). |
+|  **Stream**  | Receive token-by-token AI responses via a custom `ReadableStream` pipeline with `flushSync` rendering.                        |
 
 The result is a thinking tool that mirrors how brainstorming actually works: you diverge, explore, and converge.
 
@@ -147,13 +147,13 @@ Open [http://localhost:3000](http://localhost:3000). Click **"Try Demo"** to exp
 
 The application follows a **3-tier architecture** built entirely on Next.js App Router primitives:
 
-|        Tier        | Responsibility                                       | Implementation                                                                |
-| :----------------: | :--------------------------------------------------- | :---------------------------------------------------------------------------- |
-|     **Client**     | All UI state, optimistic updates, streaming display  | Single `"use client"` page component orchestrating React state                |
-| **Server Actions** | Every database CRUD operation (fork, merge, history) | `"use server"` functions called directly from the client, no REST boilerplate |
+|        Tier        | Responsibility                                       | Implementation                                                                 |
+| :----------------: | :--------------------------------------------------- | :----------------------------------------------------------------------------- |
+|     **Client**     | All UI state, optimistic updates, streaming display  | Single `"use client"` page component orchestrating React state                 |
+| **Server Actions** | Every database CRUD operation (fork, merge, history) | `"use server"` functions called directly from the client, no REST boilerplate  |
 |   **API Route**    | AI streaming endpoint (`POST /api/chat`)             | Separate route because SSE/streaming requires custom `ReadableStream` handling |
-|    **Database**    | Persistent tree storage with recursive CTE support   | PostgreSQL on Neon (serverless, HTTP driver for fast cold starts)             |
-|       **AI**       | Token-by-token response generation                   | Groq LPU architecture running Llama 3.3 70B for near-instant streaming        |
+|    **Database**    | Persistent tree storage with recursive CTE support   | PostgreSQL on Neon (serverless, HTTP driver for fast cold starts)              |
+|       **AI**       | Token-by-token response generation                   | Groq LPU architecture running Llama 3.3 70B for near-instant streaming         |
 
 ### Why This Architecture?
 
@@ -205,18 +205,18 @@ A built-in demo conversation (planning a weekend trip with 4 branches including 
 
 ## Tech Stack
 
-| Layer             | Technology                                                                          | Rationale                                                                                       |
-| :---------------- | :---------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------- |
-| **Framework**     | [Next.js 16](https://nextjs.org/) (App Router)                                      | File-based routing, React Server Components, Server Actions, eliminates REST boilerplate        |
-| **Language**      | [TypeScript 5](https://www.typescriptlang.org/)                                     | Type safety across complex tree data structures; prevents runtime shape errors                  |
-| **Database**      | [PostgreSQL](https://neon.tech/) via Neon Serverless                                | Gold standard for relational/tree data; Neon adds HTTP driver for instant cold starts           |
-| **ORM**           | [Drizzle ORM](https://orm.drizzle.team/)                                            | Zero-runtime-overhead, type-safe query builder with native raw SQL support for recursive CTEs   |
-| **AI Engine**     | [Vercel AI SDK](https://sdk.vercel.ai/) + [Groq](https://groq.com/) (Llama 3.3 70B) | Groq's LPU architecture gives sub-100ms token latency, streaming feels instant                  |
-| **Styling**       | [Tailwind CSS v4](https://tailwindcss.com/)                                         | CSS-first config (no `tailwind.config.js`), utility classes for rapid iteration                 |
+| Layer             | Technology                                                                          | Rationale                                                                                        |
+| :---------------- | :---------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------- |
+| **Framework**     | [Next.js 16](https://nextjs.org/) (App Router)                                      | File-based routing, React Server Components, Server Actions, eliminates REST boilerplate         |
+| **Language**      | [TypeScript 5](https://www.typescriptlang.org/)                                     | Type safety across complex tree data structures; prevents runtime shape errors                   |
+| **Database**      | [PostgreSQL](https://neon.tech/) via Neon Serverless                                | Gold standard for relational/tree data; Neon adds HTTP driver for instant cold starts            |
+| **ORM**           | [Drizzle ORM](https://orm.drizzle.team/)                                            | Zero-runtime-overhead, type-safe query builder with native raw SQL support for recursive CTEs    |
+| **AI Engine**     | [Vercel AI SDK](https://sdk.vercel.ai/) + [Groq](https://groq.com/) (Llama 3.3 70B) | Groq's LPU architecture gives sub-100ms token latency, streaming feels instant                   |
+| **Styling**       | [Tailwind CSS v4](https://tailwindcss.com/)                                         | CSS-first config (no `tailwind.config.js`), utility classes for rapid iteration                  |
 | **Animations**    | [Framer Motion](https://motion.dev/)                                                | Industry-standard React animation library for message entry, sidebar transitions, hero particles |
-| **UI Primitives** | [shadcn/ui](https://ui.shadcn.com/) (Radix-based)                                   | Copy-paste component model, we own the code, zero unused bundle weight                          |
-| **Markdown**      | react-markdown + remark-gfm + KaTeX                                                 | Full rendering of code blocks, tables, GitHub-flavored markdown, and LaTeX equations            |
-| **Fonts**         | Space Grotesk + JetBrains Mono                                                      | Geometric sans-serif for UI, monospace for code, loaded via `next/font`                         |
+| **UI Primitives** | [shadcn/ui](https://ui.shadcn.com/) (Radix-based)                                   | Copy-paste component model, we own the code, zero unused bundle weight                           |
+| **Markdown**      | react-markdown + remark-gfm + KaTeX                                                 | Full rendering of code blocks, tables, GitHub-flavored markdown, and LaTeX equations             |
+| **Fonts**         | Space Grotesk + JetBrains Mono                                                      | Geometric sans-serif for UI, monospace for code, loaded via `next/font`                          |
 
 ---
 
@@ -315,16 +315,16 @@ The interface is built around a **dark-first, glassmorphic** aesthetic:
 
 ## Performance Considerations
 
-| Technique                                          | Impact                                                                |
-| :------------------------------------------------- | :-------------------------------------------------------------------- |
-| **Recursive CTE** instead of N sequential queries  | Entire conversation history loaded in 1 database round-trip           |
-| **Client-side branch cache** (`conversationCache`) | Switching branches shows messages instantly from memory               |
-| **Optimistic updates** with temp IDs               | User actions render before the server responds                        |
-| **`flushSync` during streaming**                   | Each AI token renders synchronously, no React batching lag            |
+| Technique                                          | Impact                                                                 |
+| :------------------------------------------------- | :--------------------------------------------------------------------- |
+| **Recursive CTE** instead of N sequential queries  | Entire conversation history loaded in 1 database round-trip            |
+| **Client-side branch cache** (`conversationCache`) | Switching branches shows messages instantly from memory                |
+| **Optimistic updates** with temp IDs               | User actions render before the server responds                         |
+| **`flushSync` during streaming**                   | Each AI token renders synchronously, no React batching lag             |
 | **Neon HTTP driver**                               | Serverless-optimized connection (no TCP overhead, instant cold starts) |
-| **Database indexes** on all FK columns             | O(1) lookups for parent traversal, branch filtering, and user scoping |
-| **`React.memo` on MessageBubble**                  | Prevents re-renders when sibling messages change                      |
-| **Single-query message counts**                    | `getConversationsWithCounts()` uses a LEFT JOIN + GROUP BY, no N+1    |
+| **Database indexes** on all FK columns             | O(1) lookups for parent traversal, branch filtering, and user scoping  |
+| **`React.memo` on MessageBubble**                  | Prevents re-renders when sibling messages change                       |
+| **Single-query message counts**                    | `getConversationsWithCounts()` uses a LEFT JOIN + GROUP BY, no N+1     |
 
 ---
 
